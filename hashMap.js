@@ -23,7 +23,6 @@ class hashMap {
       this.resize();
     }
 
-    console.log("array: " + this.buckets.length);
     let list = new LinkedList();
     let index = this.hash(key);
 
@@ -40,7 +39,6 @@ class hashMap {
       let head = this.buckets[index].getHead();
       while (head) {
         if (head.getValue()[0] === key) {
-          //console.log(head.getNextNode());
           head.setValue([key, value]);
           return;
         }
@@ -175,7 +173,8 @@ class hashMap {
       if (bucket != null) {
         let node = bucket.getHead();
         while (node) {
-          this.set(node.getValue()[0], node.getValue()[1]); // Re-insert each key-value pair
+          // Re-insert each key-value pair since we are repopulating the list
+          this.set(node.getValue()[0], node.getValue()[1]); 
           node = node.getNextNode();
         }
       }
